@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Pose Estimation for Sports</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Human Pose Estimation for Sports</h1>
+            <p>Upload an image, video, or use the camera to detect poses.</p>
+        </header>
+
+        <div class="upload-options">
+            <div class="option-card">
+                <h2>Upload Image</h2>
+                <input type="file" id="imageInput" accept="image/*">
+                <button id="uploadImageBtn" class="upload-btn">Upload Image</button>
+                <div id="imageResult"></div>
+            </div>
+
+            <div class="option-card">
+                <h2>Upload Video</h2>
+                <input type="file" id="videoInput" accept="video/*">
+                <button id="uploadVideoBtn" class="upload-btn">Upload Video</button>
+                <div id="videoResult"></div>
+            </div>
+
+            <div class="option-card">
+                <h2>Use Camera</h2>
+                <button id="useCameraBtn" class="upload-btn">Open Camera</button>
+                <div id="cameraResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
