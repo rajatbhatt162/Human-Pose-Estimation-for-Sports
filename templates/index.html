@@ -3,38 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Human Pose Estimation for Sports</title>
+    <title>Human Body Detection</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Human Pose Estimation for Sports</h1>
+            <h1>Human Body Detection - This Model identify Facial Features</h1>
             <p>Upload an image, video, or use the camera to detect poses.</p>
+            <button id="darkModeToggle" class="dark-mode-btn">Enable Dark Mode</button>
         </header>
 
+        <!-- Flash Messages -->
+        <div id="flashMessages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <!-- Upload Options -->
         <div class="upload-options">
+            <!-- Image Upload -->
             <div class="option-card">
                 <h2>Upload Image</h2>
-                <input type="file" id="imageInput" accept="image/*">
-                <button id="uploadImageBtn" class="upload-btn">Upload Image</button>
+                <form action="/process_image" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="image" accept="image/*">
+                    <button type="submit" class="upload-btn">Upload Image</button>
+                </form>
                 <div id="imageResult"></div>
             </div>
 
+            <!-- Video Upload -->
             <div class="option-card">
                 <h2>Upload Video</h2>
-                <input type="file" id="videoInput" accept="video/*">
-                <button id="uploadVideoBtn" class="upload-btn">Upload Video</button>
+                <form action="/process_video" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="video" accept="video/*">
+                    <button type="submit" class="upload-btn">Upload Video</button>
+                </form>
                 <div id="videoResult"></div>
             </div>
 
+            <!-- Camera Option -->
             <div class="option-card">
                 <h2>Use Camera</h2>
-                <button id="useCameraBtn" class="upload-btn">Open Camera</button>
+                <a href="/process_camera" class="upload-btn">Open Camera</a>
                 <div id="cameraResult"></div>
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Human Body Detection. All Rights Reserved.</p>
+    </footer>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
